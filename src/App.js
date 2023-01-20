@@ -8,9 +8,14 @@ const [list, setList] = useState([])
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  console.log('hello')
+  try {
+    let colors = new Values(color).all(10)
+  } catch (error) {
+    setError(true)
+    console.log(error);
+  }
+  
 }
-
 
 function App() {
   return (
@@ -23,6 +28,7 @@ function App() {
           value={color} 
           onChange={(e) => setColor(e.target.value)}
           placeholder='#f15025'
+          className={`${error ? 'error' : null}`}
         />
         <button type='submit' className="btn">
           submit
